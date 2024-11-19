@@ -1,0 +1,58 @@
+<ion-grid>
+  <ion-row class="ion-align-items-center">
+    <ion-col  size="4"><ion-text color="primary">Filter</ion-text></ion-col>
+    <ion-col>
+      <ion-button  class="reset-button" (click)="resetFilter()">Reset</ion-button>
+    </ion-col>
+
+  </ion-row>
+  <ion-row >
+    <ion-col>
+      <ion-button class="grid-button" (click)="filterByGender('male')">Male</ion-button>
+    </ion-col>
+    <ion-col>
+      <ion-button class="grid-button" (click)="filterByGender('female')">Female</ion-button>
+    </ion-col>
+   
+  </ion-row>
+</ion-grid>
+
+<ion-card *ngFor="let user of filteredUsers"  class="back-shadow">
+  <ion-card-content>
+    <ion-grid>
+      <ion-row class="ion-align-items-start">
+        <ion-col size="4">
+          <ion-img [src]="user.picture?.large" alt="User Image"></ion-img>
+        </ion-col>
+        <ion-col size="8">
+          <ion-card-title class="text-color">
+            {{ user.name?.first }} {{ user.name?.last }}
+          </ion-card-title> 
+          <ion-card-subtitle class="email-phone" class="text-color-2">
+            {{ user.email }} <br>
+            {{ user.phone}}
+          </ion-card-subtitle>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <ion-list lines="inset" class="text-color">
+      <ion-item>
+        <ion-icon  color="tertiary" slot="start" name="male-female-outline"></ion-icon>
+        <p>{{ user.gender }}</p></ion-item>
+      <ion-item>
+        <ion-icon color="tertiary"  slot="start" name="information-circle-outline"></ion-icon>
+        <p>{{ user.dob?.age }} years old</p></ion-item>
+      <ion-item>
+        <ion-icon color="tertiary"  slot="start" name="calendar-outline"></ion-icon>
+        <p>Born on {{ user.dob?.date | date }}</p></ion-item>
+      <ion-item>
+        <ion-icon color="tertiary"  slot="start" name="map-outline"></ion-icon>
+        <p>Lives at {{ user.location?.city }} , {{user.location?.country}}</p></ion-item>
+    </ion-list>
+  </ion-card-content>
+</ion-card>
+
+<!-- Debugging: Show if filteredUsers is empty -->
+<p *ngIf="filteredUsers.length === 0">
+  No users found. Please check the console for errors.
+</p>

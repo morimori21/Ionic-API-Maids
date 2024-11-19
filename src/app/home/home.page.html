@@ -1,0 +1,14 @@
+<ion-header>
+  <ion-toolbar  color="light">
+    <ion-img class="logo" src="/assets/logo.png">
+    </ion-img>
+    <ion-title>YayaBook</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding" >
+  <ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <app-card></app-card>
+</ion-content>
